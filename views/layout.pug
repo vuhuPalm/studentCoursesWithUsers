@@ -12,8 +12,12 @@ html
           if user
             li
               a(href="/courses") Courses
-            li
-              a(href="/students") Students
+            if user.can('view students')
+              li
+                a(href="/students") Students
+            if user.can('view self')
+              li
+                a(href=`/students/profile/${user.student.id}`) Profile
             li
               a(href="/logout") Logout
             li
